@@ -14,11 +14,7 @@ class TrendingMovies extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ModifiedText(
-            text: 'Trending Movies',
-            size: 26,
-            color: Colors.green,
-          ),
+          ModifiedText(text: 'Trending Movies', size: 26),
           SizedBox(height: 10),
           Container(
               height: 270,
@@ -42,9 +38,8 @@ class TrendingMovies extends StatelessWidget {
                                       description: trending[index]['overview'],
                                       vote: trending[index]['vote_average']
                                           .toString(),
-                                      launch_on: trending[index]
-                                          ['release_date'],
-                                      key: null,
+                                      launchon: trending[index]['release_date'],
+                                      key: ObjectKey(trending[index]['id']),
                                     )));
                       },
                       child: Container(

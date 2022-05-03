@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/utils/text.dart';
 
 class Description extends StatelessWidget {
-  final String name, description, bannerurl, posterurl, vote, launch_on;
+  final String name, description, bannerurl, posterurl, vote, launchon;
 
   const Description(
-      {Key? key,
+      {required Key key,
       required this.name,
       required this.description,
       required this.bannerurl,
       required this.posterurl,
       required this.vote,
-      required this.launch_on})
+      required this.launchon})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    print('bannerurl : $bannerurl');
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
@@ -32,21 +33,18 @@ class Description extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
+                const Positioned(
                     bottom: 10,
-                    child: ModifiedText(
-                        text: '⭐ Average Rating - ' + vote,
-                        size: 20,
-                        color: Colors.white)),
+                    child: ModifiedText(text: '⭐ Average Rating - ', size: 20)),
               ])),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: ModifiedText(text: name, size: 24)),
           Container(
-              padding: EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 10),
               child:
-                  ModifiedText(text: 'Releasing On - ' + launch_on, size: 14)),
+                  ModifiedText(text: 'Releasing On - ' + launchon, size: 14)),
           Row(
             children: [
               Container(
@@ -56,7 +54,7 @@ class Description extends StatelessWidget {
               ),
               Flexible(
                 child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: ModifiedText(text: description, size: 18)),
               ),
             ],
@@ -65,11 +63,4 @@ class Description extends StatelessWidget {
       ),
     );
   }
-
-  // ignore: non_constant_identifier_names
-  ModifiedText({
-    String? text,
-    int? size,
-    Color? color,
-  }) {}
 }
