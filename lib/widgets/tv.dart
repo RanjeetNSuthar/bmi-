@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/utils/text.dart';
+import '../description.dart';
 
 class TV extends StatelessWidget {
   final List tv;
@@ -8,52 +9,70 @@ class TV extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ModifiedText(
+          const ModifiedText(
             text: 'Popular TV Shows',
             size: 26,
             color: Colors.green,
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
-              // color: Colors.red,
               height: 200,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: tv.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      padding: EdgeInsets.all(5),
-                      // color: Colors.green,
-                      width: 250,
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      'https://image.tmdb.org/t/p/w500' +
-                                          tv[index]['backdrop_path']),
-                                  fit: BoxFit.cover),
-                            ),
-                            height: 140,
+                    return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Description(
+                                        name: tv[index]['original_name'],
+                                        bannerurl:
+                                            'https://image.tmdb.org/t/p/w500' +
+                                                tv[index]['backdrop_path'],
+                                        posterurl:
+                                            'https://image.tmdb.org/t/p/w500' +
+                                                tv[index]['poster_path'],
+                                        description: tv[index]['overview'],
+                                        vote: tv[index]['vote_average']
+                                            .toString(),
+                                        launchon: tv[index]['release_date'],
+                                        key: ObjectKey(tv[index]['id']),
+                                      )));
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(5),
+                          // color: Colors.green,
+                          width: 250,
+                          child: Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          'https://image.tmdb.org/t/p/w500' +
+                                              tv[index]['backdrop_path']),
+                                      fit: BoxFit.cover),
+                                ),
+                                height: 140,
+                              ),
+                              const SizedBox(height: 5),
+                              Container(
+                                child: ModifiedText(
+                                    size: 15,
+                                    color: Colors.green,
+                                    text: tv[index]['original_name'] ??
+                                        'Loading'),
+                              )
+                            ],
                           ),
-                          SizedBox(height: 5),
-                          Container(
-                            child: ModifiedText(
-                                size: 15,
-                                color: Colors.green,
-                                text: tv[index]['original_name'] != null
-                                    ? tv[index]['original_name']
-                                    : 'Loading'),
-                          )
-                        ],
-                      ),
-                    );
+                        ));
                   }))
         ],
       ),

@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
     Map topRatedResult = await tmdbWithCustomLogs.v3.movies.getTopRated();
     Map tvResult = await tmdbWithCustomLogs.v3.tv.getPopular();
     // ignore: avoid_print
-    print('trendingResult: $trendingResult');
+    // print('trendingResult: $trendingResult');
     //  changing the state of trendingMovies, topRatedMovies and tv list variables
     setState(() {
       trendingMovies = trendingResult['results'];
@@ -60,6 +60,8 @@ class _HomeState extends State<Home> {
     });
     // ignore: avoid_print
     print('trendingMovies: $trendingMovies');
+    print('topRatedMovies: $topRatedMovies');
+    print('tv: $tv');
   }
 
   @override

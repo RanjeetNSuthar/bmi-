@@ -10,12 +10,16 @@ class TrendingMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ModifiedText(text: 'Trending Movies', size: 26),
-          SizedBox(height: 10),
+          const ModifiedText(
+            text: 'Trending Movies',
+            size: 26,
+            color: Colors.green,
+          ),
+          const SizedBox(height: 10),
           Container(
               height: 270,
               child: ListView.builder(
@@ -56,7 +60,7 @@ class TrendingMovies extends StatelessWidget {
                               ),
                               height: 200,
                             ),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Container(
                               child: ModifiedText(
                                   text: trending[index]['title'] ?? 'Loading',

@@ -15,7 +15,8 @@ class Description extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    print('bannerurl : $bannerurl');
+    // print('bannerurl : $bannerurl');
+    print('all $description $vote $launchon');
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
@@ -33,9 +34,10 @@ class Description extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Positioned(
+                Positioned(
                     bottom: 10,
-                    child: ModifiedText(text: '⭐ Average Rating - ', size: 20)),
+                    child: ModifiedText(
+                        text: '⭐ Average Rating - $vote', size: 20)),
               ])),
           const SizedBox(height: 15),
           Container(
